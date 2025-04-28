@@ -1,134 +1,49 @@
-/* ───────────────────────────────
-   GENERAL STYLES
-   ─────────────────────────────── */
-body{
-    font-family:Arial, sans-serif;
-    line-height:1.6;
-    margin:0;
-    padding:0;
-    background:#f4f4f4;
-    color:#333;
-}
+/* ───── GÉNÉRAL ───── */
+body{font-family:Arial, sans-serif;line-height:1.6;margin:0;padding:0;background:#f4f4f4;color:#333;}
+header{background:#333;color:#fff;padding:20px 0;text-align:center;}
+header h1{margin:0;} header p{margin:5px 0 0;}
 
-header{
-    background:#333;
-    color:#fff;
-    padding:20px 0;
-    text-align:center;
-}
-header h1{margin:0;}
-header p{margin:5px 0 0;}
+nav{background:#444;padding:10px;text-align:center;}
+nav ul{list-style:none;margin:0;padding:0;} nav li{display:inline;margin:0 15px;}
+nav a{color:#fff;text-decoration:none;font-weight:bold;}
 
-/* ───────────────────────────────
-   NAVIGATION
-   ─────────────────────────────── */
-nav{
-    background:#444;
-    padding:10px;
-    text-align:center;
-}
-nav ul{list-style:none;margin:0;padding:0;}
-nav ul li{display:inline;margin:0 15px;}
-nav ul li a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* ───────────────────────────────
-   SECTIONS – style “carte” commun
-   ─────────────────────────────── */
-section{
-    padding:20px;
-    margin:20px auto;
-    max-width:80%;
-    background:#fff;
-    border-radius:8px;
-    box-shadow:0 0 10px rgba(0,0,0,.1);
-}
-section h2{
-    border-bottom:2px solid #333;
-    padding-bottom:10px;
-}
-
+/* ───── SECTIONS (carte) ───── */
+section{padding:20px;margin:20px auto;max-width:80%;background:#fff;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,.1);}
+section h2{border-bottom:2px solid #333;padding-bottom:10px;}
 ul{list-style:square;padding-left:20px;}
 
-/* ───────────────────────────────
-   FOOTER
-   ─────────────────────────────── */
-footer{
-    text-align:center;
-    padding:10px;
-    background:#333;
-    color:#fff;
-    /* Pour un footer fixé :
-    position:fixed;bottom:0;width:100%;
-    */
-}
+footer{text-align:center;padding:10px;background:#333;color:#fff;}
 
-/* ───────────────────────────────
-   COLLABORATORS (SPONSORS)
-   ─────────────────────────────── */
-#sponsors{
-    
-    text-align:center;
-}
-.sponsor-logos{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:30px;
-    max-width:90%;
-    margin:0 auto;
-}
-.sponsor-logos img{
-    max-height:80px;
-    width:auto;
-    
-}
+/* ───── COLLABORATORS ───── */
+#sponsors{text-align:center;}
+.sponsor-logos{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;max-width:90%;margin:0 auto;}
+.sponsor-logos img{max-height:80px;width:auto;}
 
-/* ───────────────────────────────
-   GALLERY  (CAROUSEL)
-   ─────────────────────────────── */
-#carousel{
-   
-    text-align:center;
-    padding-top:40px;
-    padding-bottom:40px;
-}
+/* ───── GALLERY ───── */
+#carousel{text-align:center;padding:40px 0;position:relative;}            /* relative pour positionner les flèches */
 
-.carousel-container{
-    position:relative;
-    max-width:80%;
-    margin:0 auto;
-    overflow:hidden;
-}
+.carousel-container{overflow:hidden;max-width:80%;margin:0 auto;}
+.carousel-slide{display:flex;gap:1rem;transition:transform .5s ease-in-out;}
+.carousel-slide img{flex:0 0 220px;max-height:300px;object-fit:cover;border-radius:8px;cursor:pointer;}
 
-.carousel-slide{
-    display:flex;
-    transition:transform .5s ease-in-out;
-    gap:1rem;               
+/* flèches */
+button.prev,button.next{
+    position:absolute;top:50%;transform:translateY(-50%);
+    background:rgba(0,0,0,.5);color:#fff;border:none;
+    padding:10px;font-size:28px;border-radius:50%;cursor:pointer;z-index:10;
 }
+button.prev:hover,button.next:hover{background:rgba(0,0,0,.8);}
+button.prev{left:10px;} button.next{right:10px;}
 
-.carousel-slide img{
-    flex:0 0 220px;          
-    max-height:300px;
-    object-fit:cover;
-    border-radius:8px;
+/* ───── LIGHTBOX (agrandir) ───── */
+.lightbox{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;
+    visibility:hidden;opacity:0;transition:opacity .3s ease;z-index:1000;
 }
-
-button{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:rgba(0,0,0,.5);
-    color:#fff;
-    border:none;
-    padding:10px;
-    cursor:pointer;
-    font-size:24px;
-    border-radius:50%;
+.lightbox.show{visibility:visible;opacity:1;}
+.lightbox img{max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 0 20px rgba(0,0,0,.5);}
+.lightbox .close{
+    position:absolute;top:20px;right:20px;font-size:40px;
+    background:none;border:none;color:#fff;cursor:pointer;line-height:1;
 }
-button:hover{background:rgba(0,0,0,.8);}
-.prev{left:10px;}
-.next{right:10px;}
